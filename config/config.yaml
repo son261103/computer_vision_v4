@@ -1,0 +1,60 @@
+# Model Configuration
+model:
+  name: 'yolo11x'
+  confidence_threshold: 0.6
+  nms_threshold: 0.45
+  input_size: [640, 640]
+  device: 'cpu'
+
+# Classes to detect - Updated class IDs for vehicles only
+classes:
+  motorcycle: [3]
+  bicycle: [1]
+  car: [2]
+  bus: [5]
+  truck: [7]
+  traffic_light: [9]
+  stop_sign: [11]
+
+# Video Processing
+video:
+  resize_width: 1280
+  resize_height: 720
+  fps: 30
+  save_output: true
+  draw_fps: true
+  auto_save: true
+  save_format: 'mp4'
+
+# Visualization
+visualization:
+  box_thickness: 2
+  text_thickness: 2
+  font_scale: 0.8
+  colors:
+    motorcycle: [0, 255, 0]
+    bicycle: [0, 0, 255]
+    car: [255, 255, 0]
+    bus: [255, 0, 255]
+    truck: [0, 255, 255]
+    traffic_light: [128, 0, 0]
+    stop_sign: [0, 128, 0]
+
+# Paths
+paths:
+  input: 'input/videos'
+  output: 'output/videos'
+  weights: 'weights/yolo'
+
+# UI Settings
+ui:
+  window_title: 'Traffic Detection System'
+  window_size: [1280, 720]
+  theme: 'dark'
+
+# Stats Settings
+stats:
+  show_count: true
+  show_class_percentage: true
+  update_interval: 1
+  save_stats: true
