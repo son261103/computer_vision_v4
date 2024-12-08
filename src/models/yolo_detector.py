@@ -65,9 +65,9 @@ class YOLOv8Detector:
             fp = self.metrics['false_positives'][class_type]
             fn = self.metrics['false_negatives'][class_type]
 
-            precision = tp / (tp + fp) if (tp + fp) > 0 else 0
-            recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-            f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+            precision = tp / (tp + fp) if (tp + fp) > 0 else 0 # đọ chính xác
+            recall = tp / (tp + fn) if (tp + fn) > 0 else 0 # độ nhạy
+            f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0 # tính f1 core
 
             metrics[class_type] = {
                 'precision': precision,
@@ -83,7 +83,7 @@ class YOLOv8Detector:
 
         return metrics
 
-    def detect(self, frame, ground_truth=None):
+    def detect(self, frame, ground_truth=None): # phát hiện đối tượng
         if frame is None:
             return [], None
 
@@ -182,7 +182,7 @@ class YOLOv8Detector:
 
         return iou
 
-    def _process_results(self, results):
+    def _process_results(self, results): # kết quả trả về từ mô hình YOLO và trích xuất thông tin về các đối tượng phát hiện.
         detections = []
         if results.boxes is not None:
             boxes = results.boxes.cpu().numpy()
